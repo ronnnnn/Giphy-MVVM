@@ -1,7 +1,7 @@
-package com.ronnnnn.giphy_mvvm.data.json.gif
+package com.ronnnnn.giphy_mvvm.data.json.response.gif
 
-import com.ronnnnn.giphy_mvvm.data.json.image.ImageJson
-import com.ronnnnn.giphy_mvvm.data.json.user.UserJson
+import com.ronnnnn.giphy_mvvm.data.json.response.gif.image.ImageJson
+import com.ronnnnn.giphy_mvvm.data.json.response.user.UserJson
 import com.squareup.moshi.Json
 
 /**

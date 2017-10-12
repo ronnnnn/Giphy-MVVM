@@ -1,4 +1,4 @@
-package com.ronnnnn.giphy_mvvm.data.json.pagination
+package com.ronnnnn.giphy_mvvm.data.json.response
 
 import com.squareup.moshi.Json
 

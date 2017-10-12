@@ -1,4 +1,4 @@
-package com.ronnnnn.giphy_mvvm.data.json.image
+package com.ronnnnn.giphy_mvvm.data.json.response.gif.image
 
 import com.squareup.moshi.Json
 

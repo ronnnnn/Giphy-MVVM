@@ -1,8 +1,8 @@
-package com.ronnnnn.giphy_mvvm.data.json.trending
+package com.ronnnnn.giphy_mvvm.data.json
 
-import com.ronnnnn.giphy_mvvm.data.json.gif.GifJson
-import com.ronnnnn.giphy_mvvm.data.json.meta.MetaJson
-import com.ronnnnn.giphy_mvvm.data.json.pagination.PaginationJson
+import com.ronnnnn.giphy_mvvm.data.json.response.MetaJson
+import com.ronnnnn.giphy_mvvm.data.json.response.PaginationJson
+import com.ronnnnn.giphy_mvvm.data.json.response.gif.GifJson
 import com.squareup.moshi.Json
 
 /**

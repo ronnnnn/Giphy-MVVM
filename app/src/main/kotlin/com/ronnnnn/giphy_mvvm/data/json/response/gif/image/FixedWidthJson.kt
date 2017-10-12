@@ -1,16 +1,15 @@
-package com.ronnnnn.giphy_mvvm.data.json.image
+package com.ronnnnn.giphy_mvvm.data.json.response.gif.image
 
 import com.squareup.moshi.Json
 
 /**
- * Data surrounding the original version of this GIF. Good for desktop use.
+ * Data surrounding versions of this GIF with a fixed width of 200 pixels. Good for mobile use.
  */
-data class OriginalJson(
+data class FixedWidthJson(
         val url: String,
         val width: String,
         val height: String,
         val size: String,
-        val frames: String,
         val mp4: String,
         @Json(name = "mp4_size")
         val mp4Size: String,
