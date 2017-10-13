@@ -3,6 +3,8 @@ package com.ronnnnn.giphy_mvvm
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.ronnnnn.giphy_mvvm.data.GiphyModule
+import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +16,7 @@ import javax.inject.Singleton
 /**
  * Created by kokushiseiya on 2017/10/12.
  */
+@Module(includes = arrayOf(GiphyModule::class))
 class AppDataModule {
 
     companion object {
