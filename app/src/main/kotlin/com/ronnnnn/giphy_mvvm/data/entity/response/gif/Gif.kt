@@ -33,4 +33,4 @@ data class Gif(
         @Json(name = "trending_datetime")
         val trendingDateTime: String,
         val images: List<Image>
-        )
+)
