@@ -12,3 +12,6 @@ data class PreviewJson(
         val width: String,
         val height: String
 )
+
+fun PreviewJson.toEntity(): Preview =
+        Preview(mp4, mp4Size.toInt(), width.toInt(), height.toInt())

@@ -9,3 +9,6 @@ data class DownsizedMediumJson(
         val height: String,
         val size: String
 )
+
+fun DownsizedMediumJson.toEntity(): DownsizedMedium =
+        DownsizedMedium(url, width.toInt(), height.toInt(), size.toInt())

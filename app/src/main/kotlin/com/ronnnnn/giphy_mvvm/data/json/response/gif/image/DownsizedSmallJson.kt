@@ -9,3 +9,6 @@ data class DownsizedSmallJson(
         val height: String,
         val size: String
 )
+
+fun DownsizedSmallJson.toEntity(): DownsizedSmall =
+        DownsizedSmall(url, width.toInt(), height.toInt(), size.toInt())

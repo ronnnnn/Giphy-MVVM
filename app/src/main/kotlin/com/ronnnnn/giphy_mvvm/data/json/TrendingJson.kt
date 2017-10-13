@@ -3,6 +3,8 @@ package com.ronnnnn.giphy_mvvm.data.json
 import com.ronnnnn.giphy_mvvm.data.json.response.MetaJson
 import com.ronnnnn.giphy_mvvm.data.json.response.PaginationJson
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.GifJson
+import com.ronnnnn.giphy_mvvm.data.json.response.gif.toEntity
+import com.ronnnnn.giphy_mvvm.data.json.response.toEntity
 import com.squareup.moshi.Json
 
 /**
@@ -16,3 +18,10 @@ data class TrendingJson(
         @Json(name = "meta")
         val metaJson: MetaJson
 )
+
+fun TrendingJson.toEntity(): Trending =
+        Trending(
+                gifJsons.map { gifJson -> gifJson.toEntity() },
+                paginationJson.toEntity(),
+                metaJson.toEntity()
+        )

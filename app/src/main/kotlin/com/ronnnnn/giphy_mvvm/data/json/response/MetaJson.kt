@@ -11,3 +11,6 @@ data class MetaJson(
         @Json(name = "response_id")
         val responseId: String
 )
+
+fun MetaJson.toEntity(): Meta =
+        Meta(msg, status, responseId)

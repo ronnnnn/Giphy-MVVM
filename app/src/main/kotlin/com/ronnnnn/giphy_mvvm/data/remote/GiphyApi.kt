@@ -12,9 +12,9 @@ interface GiphyApi {
     @CheckResult
     fun getTrending(
             apiKey: String,
-            limit: Int = 25,
-            offset: Int = 0,
-            rating: String = "",
-            format: String = "json"
+            limit: Int,
+            offset: Int,
+            rating: String,
+            format: String
     ): Single<TrendingJson>
 }

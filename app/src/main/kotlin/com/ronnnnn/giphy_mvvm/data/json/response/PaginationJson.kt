@@ -11,3 +11,6 @@ data class PaginationJson(
         val totalCount: Int,
         val count: Int
 )
+
+fun PaginationJson.toEntity(): Pagination =
+        Pagination(offset, totalCount, count)

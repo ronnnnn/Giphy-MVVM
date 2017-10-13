@@ -47,3 +47,27 @@ data class ImageJson(
         @Json(name = "preview_gif")
         val previewGifJson: PreviewGifJson
 )
+
+fun ImageJson.toEntity(): Image =
+        Image(
+                fixedHeightJson.toEntity(),
+                fixedHeightStillJson.toEntity(),
+                fixedHeightDownsampledJson.toEntity(),
+                fixedWidthJson.toEntity(),
+                fixedWidthStillJson.toEntity(),
+                fixedWidthDownsampledJson.toEntity(),
+                fixedHeightSmallJson.toEntity(),
+                fixedHeightSmallStillJson.toEntity(),
+                fixedWidthSmallJson.toEntity(),
+                fixedWidthSmallStillJson.toEntity(),
+                downsizedJson.toEntity(),
+                downsizedStillJson.toEntity(),
+                downsizedLargeJson.toEntity(),
+                downsizedMediumJson.toEntity(),
+                downsizedSmallJson.toEntity(),
+                originalJson.toEntity(),
+                originalStillJson.toEntity(),
+                loopingJson.toEntity(),
+                previewJson.toEntity(),
+                previewGifJson.toEntity()
+        )

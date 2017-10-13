@@ -17,3 +17,6 @@ data class UserJson(
         val displayName: String,
         val twitter: String
 )
+
+fun UserJson.toEntity(): User =
+        User(avatarUrl, bannerUrl, profileUrl, username, displayName, twitter)

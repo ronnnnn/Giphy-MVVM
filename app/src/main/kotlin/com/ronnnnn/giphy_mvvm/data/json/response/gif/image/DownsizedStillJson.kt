@@ -8,3 +8,6 @@ data class DownsizedStillJson(
         val width: String,
         val height: String
 )
+
+fun DownsizedStillJson.toEntity(): DownsizedStill =
+        DownsizedStill(url, width.toInt(), height.toInt())

@@ -8,3 +8,6 @@ data class FixedWidthStillJson(
         val width: String,
         val height: String
 )
+
+fun FixedWidthStillJson.toEntity(): FixedWidthStill =
+        FixedWidthStill(url, width.toInt(), height.toInt())

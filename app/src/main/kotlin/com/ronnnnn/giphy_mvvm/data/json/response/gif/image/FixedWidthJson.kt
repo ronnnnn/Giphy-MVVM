@@ -17,3 +17,6 @@ data class FixedWidthJson(
         @Json(name = "webp_size")
         val webpSize: String
 )
+
+fun FixedWidthJson.toEntity(): FixedWidth =
+        FixedWidth(url, width.toInt(), height.toInt(), size.toInt(), mp4, mp4Size.toInt(), webp, webpSize.toInt())

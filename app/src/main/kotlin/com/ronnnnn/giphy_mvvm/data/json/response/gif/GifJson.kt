@@ -1,7 +1,9 @@
 package com.ronnnnn.giphy_mvvm.data.json.response.gif
 
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.image.ImageJson
+import com.ronnnnn.giphy_mvvm.data.json.response.gif.image.toEntity
 import com.ronnnnn.giphy_mvvm.data.json.response.user.UserJson
+import com.ronnnnn.giphy_mvvm.data.json.response.user.toEntity
 import com.squareup.moshi.Json
 
 /**
@@ -35,4 +37,25 @@ data class GifJson(
         val trendingDateTime: String,
         @Json(name = "images")
         val imageJsons: List<ImageJson>
+)
+
+fun GifJson.toEntity(): Gif =
+        Gif(
+                type,
+                id,
+                slug,
+                url,
+                bitlyUrl,
+                embedUrl,
+                username,
+                source,
+                rating,
+                userJson?.toEntity(),
+                sourceTld,
+                sourcePostUrl,
+                updateDatetime,
+                createDatetime,
+                importDatetime,
+                trendingDateTime,
+                imageJsons.map { imageJson -> imageJson.toEntity() }
         )

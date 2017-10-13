@@ -9,3 +9,6 @@ data class PreviewGifJson(
         val height: String,
         val size: String
 )
+
+fun PreviewGifJson.toEntity(): PreviewGif =
+        PreviewGif(url, width.toInt(), height.toInt(), size.toInt())

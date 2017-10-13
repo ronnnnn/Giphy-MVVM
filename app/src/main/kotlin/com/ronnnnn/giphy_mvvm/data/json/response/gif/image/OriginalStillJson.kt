@@ -8,3 +8,6 @@ data class OriginalStillJson(
         val width: String,
         val height: String
 )
+
+fun OriginalStillJson.toEntity(): OriginalStill =
+        OriginalStill(url, width.toInt(), height.toInt())

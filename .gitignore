@@ -59,3 +59,6 @@ secret.properties
 
 # Sketch File
 GMS_icon.sketch
+
+# Keys
+/app/src/main/res/values/keys.xml

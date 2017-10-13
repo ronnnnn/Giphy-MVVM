@@ -6,3 +6,6 @@ package com.ronnnnn.giphy_mvvm.data.json.response.gif.image
 data class LoopingJson(
         val mp4: String
 )
+
+fun LoopingJson.toEntity(): Looping =
+        Looping(mp4)

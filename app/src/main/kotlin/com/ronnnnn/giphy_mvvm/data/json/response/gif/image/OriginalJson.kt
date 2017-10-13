@@ -18,3 +18,6 @@ data class OriginalJson(
         @Json(name = "webp_size")
         val webpSize: String
 )
+
+fun OriginalJson.toEntity(): Original =
+        Original(url, width.toInt(), height.toInt(), size.toInt(), frames.toInt(), mp4, mp4Size.toInt(), webp, webpSize.toInt())

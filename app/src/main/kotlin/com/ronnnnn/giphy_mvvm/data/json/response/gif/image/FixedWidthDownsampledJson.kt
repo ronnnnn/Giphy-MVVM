@@ -14,3 +14,6 @@ data class FixedWidthDownsampledJson(
         @Json(name = "webp_size")
         val webpSize: String
 )
+
+fun FixedWidthDownsampledJson.toEntity(): FixedWidthDownsampled =
+        FixedWidthDownsampled(url, width.toInt(), height.toInt(), size.toInt(), webp, webpSize.toInt())
