@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.ronnnnn.giphy_mvvm.R
 import com.ronnnnn.giphy_mvvm.databinding.ActivityMainBinding
-import com.ronnnnn.giphy_mvvm.ui.detail.DetailFragment
-import com.ronnnnn.giphy_mvvm.ui.trending.TrendingFragment
 
-class MainActivity : AppCompatActivity(), TrendingFragment.Listener {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +21,11 @@ class MainActivity : AppCompatActivity(), TrendingFragment.Listener {
         }
     }
 
-    override fun onItemClicked(gifId: String) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.container_frame_layout, DetailFragment.createInstance(gifId))
-                .addToBackStack(DetailFragment::class.java.name)
-                .commit()
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount < 2) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
