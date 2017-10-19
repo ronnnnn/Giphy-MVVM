@@ -22,29 +22,24 @@ class TrendingFragment private constructor() : Fragment(), TrendingContract {
                 TrendingFragment()
     }
 
-    private lateinit var binding: FragmentTrendingBinding
-
-    private var recyclerAdapter: TrendingRecyclerAdapter? = null
+    private lateinit var recyclerAdapter: TrendingRecyclerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate<FragmentTrendingBinding>(inflater, R.layout.fragment_trending, container, false).apply {
+        val binding = DataBindingUtil.inflate<FragmentTrendingBinding>(inflater, R.layout.fragment_trending, container, false)
+
+        recyclerAdapter = TrendingRecyclerAdapter(context)
+        binding.run {
+            trendingRecyclerView.run {
+                layoutManager = LinearLayoutManager(context)
+                adapter = recyclerAdapter
+            }
             viewModel = TrendingViewModel(context, this@TrendingFragment)
         }
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerAdapter = TrendingRecyclerAdapter(context)
-        binding.trendingRecyclerView.run {
-            layoutManager = LinearLayoutManager(context)
-            adapter = recyclerAdapter
-        }
-    }
-
     override fun showImages(images: List<Gif>) {
-        recyclerAdapter?.setItemsAndNotify(images)
+        recyclerAdapter.setItemsAndNotify(images)
     }
 }
