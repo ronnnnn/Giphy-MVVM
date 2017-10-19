@@ -11,7 +11,7 @@ data class FixedWidthSmallJson(
         val height: String,
         val size: String,
         val mp4: String,
-        @Json(name = "map4_size")
+        @Json(name = "mp4_size")
         val mp4Size: String,
         val webp: String,
         @Json(name = "webp_size")

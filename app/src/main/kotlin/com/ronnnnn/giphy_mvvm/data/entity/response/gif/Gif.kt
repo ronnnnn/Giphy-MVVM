@@ -25,12 +25,12 @@ data class Gif(
         @Json(name = "source_post_url")
         val sourcePostUrl: String,
         @Json(name = "update_datetime")
-        val updateDatetime: String,
+        val updateDatetime: String?,
         @Json(name = "create_datetime")
-        val createDatetime: String,
+        val createDatetime: String?,
         @Json(name = "import_datetime")
         val importDatetime: String,
         @Json(name = "trending_datetime")
-        val trendingDateTime: String,
-        val images: List<Image>
+        val trendingDateTime: String?,
+        val images: Image
 )

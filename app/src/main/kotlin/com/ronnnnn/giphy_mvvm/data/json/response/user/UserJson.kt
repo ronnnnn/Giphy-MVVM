@@ -15,7 +15,7 @@ data class UserJson(
         val username: String,
         @Json(name = "display_name")
         val displayName: String,
-        val twitter: String
+        val twitter: String?
 )
 
 fun UserJson.toEntity(): User =

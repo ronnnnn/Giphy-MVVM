@@ -15,5 +15,5 @@ data class User(
         val username: String,
         @Json(name = "display_name")
         val displayName: String,
-        val twitter: String
+        val twitter: String?
 )

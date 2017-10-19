@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ronnnnn.giphy_mvvm.ui.trending.TrendingItemViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/gif_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher"
+            bind:imageUrl="@{viewModel.imageUrl}"/>
+
+    </android.support.v7.widget.CardView>
+</layout>

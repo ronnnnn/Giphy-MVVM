@@ -36,7 +36,7 @@ data class GifJson(
         @Json(name = "trending_datetime")
         val trendingDateTime: String,
         @Json(name = "images")
-        val imageJsons: List<ImageJson>
+        val imageJsons: ImageJson
 )
 
 fun GifJson.toEntity(): Gif =
@@ -57,5 +57,5 @@ fun GifJson.toEntity(): Gif =
                 createDatetime,
                 importDatetime,
                 trendingDateTime,
-                imageJsons.map { imageJson -> imageJson.toEntity() }
+                imageJsons.toEntity()
         )

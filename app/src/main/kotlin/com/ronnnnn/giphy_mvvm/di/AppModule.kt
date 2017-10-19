@@ -1,7 +1,8 @@
-package com.ronnnnn.giphy_mvvm
+package com.ronnnnn.giphy_mvvm.di
 
 import android.app.Application
 import android.content.Context
+import com.ronnnnn.giphy_mvvm.App
 import dagger.Module
 import dagger.Provides
 

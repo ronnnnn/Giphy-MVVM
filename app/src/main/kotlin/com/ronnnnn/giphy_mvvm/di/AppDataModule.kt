@@ -1,4 +1,4 @@
-package com.ronnnnn.giphy_mvvm
+package com.ronnnnn.giphy_mvvm.di
 
 import android.app.Application
 import android.content.Context
