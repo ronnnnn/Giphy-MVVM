@@ -9,7 +9,9 @@ import com.ronnnnn.giphy_mvvm.di.GlideApp
  */
 
 @BindingAdapter("imageUrl")
-fun ImageView.loadImage(imageUrl: String) {
+fun ImageView.loadImage(imageUrl: String?) {
+    imageUrl ?: return
+
     GlideApp.with(context)
             .load(imageUrl)
             .into(this)

@@ -1,6 +1,7 @@
 package com.ronnnnn.giphy_mvvm.data.remote
 
 import android.support.annotation.CheckResult
+import com.ronnnnn.giphy_mvvm.data.json.SearchByIdJson
 import com.ronnnnn.giphy_mvvm.data.json.TrendingJson
 import io.reactivex.Single
 
@@ -17,4 +18,10 @@ interface GiphyApi {
             rating: String,
             format: String
     ): Single<TrendingJson>
+
+    @CheckResult
+    fun getGifById(
+            apiKey: String,
+            gifId: String
+    ): Single<SearchByIdJson>
 }

@@ -13,7 +13,10 @@ import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerViewBinding
 /**
  * Created by kokushiseiya on 2017/10/17.
  */
-class TrendingRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<TrendingRecyclerAdapter.ViewHolder>() {
+class TrendingRecyclerAdapter(
+        private val context: Context,
+        private val listener: Listener
+) : RecyclerView.Adapter<TrendingRecyclerAdapter.ViewHolder>(), TrendingItemContract {
 
     private val gifs: ArrayList<Gif> = arrayListOf()
 
@@ -27,7 +30,7 @@ class TrendingRecyclerAdapter(private val context: Context) : RecyclerView.Adapt
                     parent,
                     false
             ).run {
-                viewModel = TrendingItemViewModel()
+                viewModel = TrendingItemViewModel(this@TrendingRecyclerAdapter)
                 ViewHolder(root, viewModel)
             }
 
@@ -41,10 +44,19 @@ class TrendingRecyclerAdapter(private val context: Context) : RecyclerView.Adapt
         notifyDataSetChanged()
     }
 
+
+    override fun onItemClicked(gifId: String) {
+        listener.onItemClicked(gifId)
+    }
+
     class ViewHolder(view: View, private val viewModel: TrendingItemViewModel) : RecyclerView.ViewHolder(view) {
 
         fun onBind(gif: Gif) {
             viewModel.loadItem(gif)
         }
+    }
+
+    interface Listener {
+        fun onItemClicked(gifId: String)
     }
 }

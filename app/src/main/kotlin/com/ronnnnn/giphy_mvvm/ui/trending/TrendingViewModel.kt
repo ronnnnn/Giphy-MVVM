@@ -4,7 +4,6 @@ import android.content.Context
 import com.ronnnnn.giphy_mvvm.App
 import com.ronnnnn.giphy_mvvm.model.GiphyModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -29,7 +28,6 @@ class TrendingViewModel(private val context: Context, private val view: Trending
 
     private fun fetchImages() {
         giphyModel.getTrending()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { trending, throwable ->
                     throwable?.let {
