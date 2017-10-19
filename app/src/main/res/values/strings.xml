@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GIPHY-MVVM</string>
+
+    <string name="transition_item_name_trending">trending</string>
+    <string name="transition_item_name_trending_item">trending_%d</string>
 </resources>

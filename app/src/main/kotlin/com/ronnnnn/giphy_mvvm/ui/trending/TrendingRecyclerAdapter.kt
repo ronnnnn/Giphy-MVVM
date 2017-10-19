@@ -2,10 +2,12 @@ package com.ronnnnn.giphy_mvvm.ui.trending
 
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.databinding.ObservableField
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.ronnnnn.giphy_mvvm.R
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerViewBinding
@@ -16,7 +18,7 @@ import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerViewBinding
 class TrendingRecyclerAdapter(
         private val context: Context,
         private val listener: Listener
-) : RecyclerView.Adapter<TrendingRecyclerAdapter.ViewHolder>(), TrendingItemContract {
+) : RecyclerView.Adapter<TrendingRecyclerAdapter.ViewHolder>() {
 
     private val gifs: ArrayList<Gif> = arrayListOf()
 
@@ -30,12 +32,13 @@ class TrendingRecyclerAdapter(
                     parent,
                     false
             ).run {
-                viewModel = TrendingItemViewModel(this@TrendingRecyclerAdapter)
-                ViewHolder(root, viewModel)
+                ViewHolder(this).apply {
+                    viewModel = this
+                }
             }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(gifs[position])
+        holder.loadItem(gifs[position], position)
     }
 
     fun setItemsAndNotify(items: List<Gif>) {
@@ -44,19 +47,27 @@ class TrendingRecyclerAdapter(
         notifyDataSetChanged()
     }
 
+    inner class ViewHolder(private val binding: ItemTrendingRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    override fun onItemClicked(gifId: String) {
-        listener.onItemClicked(gifId)
-    }
+        val gifId: ObservableField<String> = ObservableField()
+        val imageUrl: ObservableField<String> = ObservableField()
 
-    class ViewHolder(view: View, private val viewModel: TrendingItemViewModel) : RecyclerView.ViewHolder(view) {
+        fun loadItem(gif: Gif, position: Int) {
+            ViewCompat.setTransitionName(
+                    binding.gifImageView,
+                    context.getString(R.string.transition_item_name_trending_item, position)
+            )
 
-        fun onBind(gif: Gif) {
-            viewModel.loadItem(gif)
+            gifId.set(gif.id)
+            imageUrl.set(gif.images.fixedHeight.url)
+        }
+
+        fun startDetail(gifId: String) {
+            listener.onItemClicked(gifId, binding.gifImageView)
         }
     }
 
     interface Listener {
-        fun onItemClicked(gifId: String)
+        fun onItemClicked(gifId: String, sharedImageView: ImageView)
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,8 +18,9 @@
             android:id="@+id/gif_image_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_200"
-            tools:src="@mipmap/ic_launcher"
-            bind:imageUrl="@{viewModel.gifImageUrl}"/>
+            bind:imageUrl="@{viewModel.gifImageUrl}"
+            android:transitionName="@string/transition_item_name_trending"
+            tools:src="@mipmap/ic_launcher" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -33,8 +34,8 @@
                 android:layout_width="@dimen/size_40"
                 android:layout_height="@dimen/size_40"
                 android:layout_margin="@dimen/margin_8"
-                tools:src="@mipmap/ic_launcher_round"
-                bind:imageUrl="@{viewModel.userImageUrl}"/>
+                bind:imageUrl="@{viewModel.userImageUrl}"
+                tools:src="@mipmap/ic_launcher_round" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -52,10 +53,10 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:text="@{viewModel.userName}"
                     android:textSize="@dimen/text_14"
                     android:textStyle="bold"
-                    tools:text="hogehogehaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                    android:text="@{viewModel.userName}"/>
+                    tools:text="hogehogehaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
 
                 <TextView
                     android:id="@+id/user_twitter_id_text_view"
@@ -64,10 +65,10 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/margin_4"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_12"
-                    tools:text="twitter"
                     android:text="@{viewModel.userTwitterId}"
-                    android:visibility="@{viewModel.twitterIdVisibility}"/>
+                    android:textSize="@dimen/text_12"
+                    android:visibility="@{viewModel.twitterIdVisibility}"
+                    tools:text="twitter" />
 
             </LinearLayout>
 
