@@ -17,9 +17,10 @@
         <ImageView
             android:id="@+id/gif_image_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_200"
-            bind:imageUrl="@{viewModel.gifImageUrl}"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:transitionName="@string/transition_item_name_trending"
+            bind:imageUrl="@{viewModel.gifImageUrl}"
             tools:src="@mipmap/ic_launcher" />
 
         <RelativeLayout
