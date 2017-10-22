@@ -7,7 +7,6 @@ import com.squareup.moshi.Json
  */
 data class Preview(
         val mp4: String,
-        @Json(name = "mp4_size")
         val mp4Size: Int,
         val width: Int,
         val height: Int
