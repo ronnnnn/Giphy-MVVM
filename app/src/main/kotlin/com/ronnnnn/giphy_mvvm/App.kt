@@ -6,6 +6,7 @@ import com.ronnnnn.giphy_mvvm.di.AppComponent
 import com.ronnnnn.giphy_mvvm.di.AppDataModule
 import com.ronnnnn.giphy_mvvm.di.AppModule
 import com.ronnnnn.giphy_mvvm.di.DaggerAppComponent
+import timber.log.Timber
 
 /**
  * Created by kokushiseiya on 2017/10/11.
@@ -27,5 +28,7 @@ class App : Application() {
         super.onCreate()
 
         component.inject(this)
+
+        Timber.plant(Timber.DebugTree())
     }
 }

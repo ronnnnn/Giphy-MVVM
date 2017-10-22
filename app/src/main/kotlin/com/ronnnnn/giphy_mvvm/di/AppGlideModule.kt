@@ -10,7 +10,6 @@ import com.bumptech.glide.Registry
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.DecodeFormat
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.cache.LruResourceCache
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
@@ -31,8 +30,7 @@ class AppGlideModule : AppGlideModule() {
         builder ?: return
 
         builder.setMemoryCache(LruResourceCache(getMaxCacheSize(context)))
-                .setDefaultRequestOptions(RequestOptions().format(DecodeFormat.DEFAULT)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
+                .setDefaultRequestOptions(RequestOptions().format(DecodeFormat.DEFAULT))
                 .setDefaultTransitionOptions(Bitmap::class.java, BitmapTransitionOptions.withCrossFade())
                 .setDefaultTransitionOptions(Drawable::class.java, DrawableTransitionOptions.withCrossFade())
     }
