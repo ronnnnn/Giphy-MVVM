@@ -4,7 +4,6 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableField
 import android.databinding.ViewDataBinding
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -139,18 +138,11 @@ class TrendingRecyclerAdapter(
         val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
 
         override fun loadItem(gifs: List<Gif?>, position: Int) {
-            listOf(binding.gifImageView1, binding.gifImageView2, binding.gifImageView3).forEachIndexed { index, imageView ->
-                ViewCompat.setTransitionName(
-                        imageView,
-                        context.getString(R.string.transition_item_name_trending_item, position, index)
-                )
-            }
-
             gifs.map { gif -> gif?.id }
                     .forEachIndexed { index, id ->
                         gifIds[index].set(id)
                     }
-            gifs.map { gif -> gif?.images?.fixedHeight?.url }
+            gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
                     .forEachIndexed { index, url ->
                         Timber.d(index.toString() + ", " + url)
                         imageUrls[index].set(url)
@@ -163,23 +155,11 @@ class TrendingRecyclerAdapter(
         val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
 
         override fun loadItem(gifs: List<Gif?>, position: Int) {
-            listOf(binding.gifImageView1,
-                    binding.gifImageView2,
-                    binding.gifImageView3,
-                    binding.gifImageView4,
-                    binding.gifImageView5,
-                    binding.gifImageView6).forEachIndexed { index, imageView ->
-                ViewCompat.setTransitionName(
-                        imageView,
-                        context.getString(R.string.transition_item_name_trending_item, position, index)
-                )
-            }
-
             gifs.map { gif -> gif?.id }
                     .forEachIndexed { index, id ->
                         gifIds[index].set(id)
                     }
-            gifs.map { gif -> gif?.images?.fixedHeight?.url }
+            gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
                     .forEachIndexed { index, Url ->
                         imageUrls[index].set(Url)
                     }
@@ -192,18 +172,11 @@ class TrendingRecyclerAdapter(
         val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
 
         override fun loadItem(gifs: List<Gif?>, position: Int) {
-            listOf(binding.gifImageView1, binding.gifImageView2, binding.gifImageView3).forEachIndexed { index, imageView ->
-                ViewCompat.setTransitionName(
-                        imageView,
-                        context.getString(R.string.transition_item_name_trending_item, position, index)
-                )
-            }
-
             gifs.map { gif -> gif?.id }
                     .forEachIndexed { index, id ->
                         gifIds[index].set(id)
                     }
-            gifs.map { gif -> gif?.images?.fixedHeight?.url }
+            gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
                     .forEachIndexed { index, Url ->
                         imageUrls[index].set(Url)
                     }
