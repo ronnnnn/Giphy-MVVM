@@ -27,6 +27,7 @@ class TrendingFragment private constructor() : Fragment(), TrendingContract, Tre
     }
 
     private var recyclerAdapter: TrendingRecyclerAdapter? = null
+    private var trendingViewModel: TrendingViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             DataBindingUtil.inflate<FragmentTrendingBinding>(inflater, R.layout.fragment_trending, container, false).run {
@@ -35,10 +36,18 @@ class TrendingFragment private constructor() : Fragment(), TrendingContract, Tre
                     layoutManager = LinearLayoutManager(context)
                     adapter = recyclerAdapter
                 }
-                viewModel = TrendingViewModel(context, this@TrendingFragment)
+
+                trendingViewModel = TrendingViewModel(context, this@TrendingFragment)
+                viewModel = trendingViewModel
 
                 root
             }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        trendingViewModel?.dispose()
+    }
 
     override fun showImages(images: List<Gif>) {
         recyclerAdapter?.setItemsAndNotify(images)

@@ -3,6 +3,7 @@ package com.ronnnnn.giphy_mvvm.ui.trending
 import android.content.Context
 import com.ronnnnn.giphy_mvvm.App
 import com.ronnnnn.giphy_mvvm.model.GiphyModel
+import com.ronnnnn.giphy_mvvm.ui.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -10,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by kokushiseiya on 2017/10/17.
  */
-class TrendingViewModel(private val context: Context, private val view: TrendingContract) {
+class TrendingViewModel(private val context: Context, private val view: TrendingContract): BaseViewModel() {
 
     @Inject
     lateinit var giphyModel: GiphyModel
@@ -27,7 +28,7 @@ class TrendingViewModel(private val context: Context, private val view: Trending
     }
 
     private fun fetchImages() {
-        giphyModel.getTrending()
+        val disposable = giphyModel.getTrending()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { trending, throwable ->
                     throwable?.let {
@@ -38,5 +39,6 @@ class TrendingViewModel(private val context: Context, private val view: Trending
                         }
                     }
                 }
+        compositeDisposable.add(disposable)
     }
 }

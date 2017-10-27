@@ -6,6 +6,7 @@ import android.view.View
 import com.ronnnnn.giphy_mvvm.App
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import com.ronnnnn.giphy_mvvm.model.GiphyModel
+import com.ronnnnn.giphy_mvvm.ui.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -13,7 +14,7 @@ import javax.inject.Inject
 /**
  * Created by kokushiseiya on 2017/10/19.
  */
-class DetailViewModel(private val context: Context, private val view: DetailContract) {
+class DetailViewModel(private val context: Context, private val view: DetailContract): BaseViewModel() {
 
     @Inject
     lateinit var giphyModel: GiphyModel
@@ -35,7 +36,7 @@ class DetailViewModel(private val context: Context, private val view: DetailCont
     }
 
     fun loadData(gifId: String) {
-        giphyModel.getGifById(gifId)
+        val disposable = giphyModel.getGifById(gifId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { result, throwable ->
                     throwable?.let {
@@ -44,6 +45,7 @@ class DetailViewModel(private val context: Context, private val view: DetailCont
                         setData(result.gif)
                     }
                 }
+        compositeDisposable.add(disposable)
     }
 
     private fun setData(gif: Gif) {

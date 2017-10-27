@@ -25,14 +25,21 @@ class DetailFragment : Fragment(), DetailContract {
                 }
     }
 
-    private lateinit var binding: FragmentDetailBinding
+    private var detailViewModel: DetailViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).run {
-            viewModel = DetailViewModel(context, this@DetailFragment).apply {
-                loadData(arguments.getString(KEY_GIF_ID))
+            DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).run {
+                detailViewModel = DetailViewModel(context, this@DetailFragment).apply {
+                    loadData(arguments.getString(KEY_GIF_ID))
+                }
+                viewModel = detailViewModel
+
+                root
             }
 
-            root
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        detailViewModel?.dispose()
+    }
 }
