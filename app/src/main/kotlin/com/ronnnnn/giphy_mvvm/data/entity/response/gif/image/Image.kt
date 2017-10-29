@@ -23,5 +23,5 @@ data class Image(
         val originalStill: OriginalStill,
         val looping: Looping,
         val preview: Preview,
-        val previewGif: PreviewGif
+        val previewGif: PreviewGif?
 )

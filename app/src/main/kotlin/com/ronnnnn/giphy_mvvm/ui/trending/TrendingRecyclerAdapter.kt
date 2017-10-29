@@ -13,7 +13,6 @@ import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerView1Binding
 import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerView2Binding
 import com.ronnnnn.giphy_mvvm.databinding.ItemTrendingRecyclerView3Binding
-import timber.log.Timber
 
 /**
  * Created by kokushiseiya on 2017/10/17.
@@ -123,6 +122,11 @@ class TrendingRecyclerAdapter(
         notifyDataSetChanged()
     }
 
+    fun addItemsAndNotify(items: List<Gif>) {
+        gifs.addAll(items)
+        notifyDataSetChanged()
+    }
+
     inner abstract class BaseViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
         abstract fun loadItem(gifs: List<Gif?>, position: Int)
@@ -144,7 +148,6 @@ class TrendingRecyclerAdapter(
                     }
             gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
                     .forEachIndexed { index, url ->
-                        Timber.d(index.toString() + ", " + url)
                         imageUrls[index].set(url)
                     }
         }

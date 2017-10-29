@@ -16,6 +16,8 @@ class TrendingViewModel(private val context: Context, private val view: Trending
     @Inject
     lateinit var giphyModel: GiphyModel
 
+    private var itemCount: Int = 0
+
     private val component: Component by lazy {
         DaggerComponent.builder()
                 .appComponent(App.get(context).component)
@@ -34,8 +36,25 @@ class TrendingViewModel(private val context: Context, private val view: Trending
                     throwable?.let {
                         Timber.e(it)
                     } ?: kotlin.run {
+                        itemCount += trending.gifs.size
                         trending.gifs.let {
                             view.showImages(it)
+                        }
+                    }
+                }
+        compositeDisposable.add(disposable)
+    }
+
+    fun fetchNextImages() {
+        val disposable = giphyModel.getTrending(itemCount)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { trending, throwable ->
+                    throwable?.let {
+                        Timber.e(it)
+                    } ?: kotlin.run {
+                        itemCount += trending.gifs.size
+                        trending.gifs.let {
+                            view.addImages(it)
                         }
                     }
                 }

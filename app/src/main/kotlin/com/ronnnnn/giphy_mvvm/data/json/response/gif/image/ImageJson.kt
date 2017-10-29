@@ -45,7 +45,7 @@ data class ImageJson(
         @Json(name = "preview")
         val previewJson: PreviewJson,
         @Json(name = "preview_gif")
-        val previewGifJson: PreviewGifJson
+        val previewGifJson: PreviewGifJson?
 )
 
 fun ImageJson.toEntity(): Image =
@@ -69,5 +69,5 @@ fun ImageJson.toEntity(): Image =
                 originalStillJson.toEntity(),
                 loopingJson.toEntity(),
                 previewJson.toEntity(),
-                previewGifJson.toEntity()
+                previewGifJson?.toEntity()
         )

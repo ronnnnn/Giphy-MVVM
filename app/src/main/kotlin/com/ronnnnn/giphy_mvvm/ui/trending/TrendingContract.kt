@@ -8,4 +8,6 @@ import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 interface TrendingContract {
 
     fun showImages(images: List<Gif>)
+
+    fun addImages(images: List<Gif>)
 }
