@@ -34,6 +34,8 @@ def retrofit = '2.3.0'
 def okhttp3 = '3.9.0'
 
 dependencies {
+    compile project(':data')
+
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
