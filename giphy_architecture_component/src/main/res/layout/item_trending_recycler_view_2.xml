@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ronnnnn.giphy_architecture_component.ui.trending.TrendingRecyclerAdapter.SecondGridViewHolder" />
+    </data>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="3"
+        app:rowCount="2">
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[0]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[0].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[1]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[1].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[2]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[2].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[3]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[3].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[4]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[4].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <com.ronnnnn.giphy_architecture_component.ui.view.SquareImageView
+            android:id="@+id/gif_image_view_6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_columnWeight="1"
+            app:imageUrl="@{viewModel.imageUrls[5]}"
+            android:onClick="@{view -> viewModel.startDetail(viewModel.gifIds[5].get(), view.id)}"
+            tools:src="@mipmap/ic_launcher" />
+
+    </android.support.v7.widget.GridLayout>
+</layout>

@@ -25,9 +25,14 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    dataBinding {
+        enabled = true
+    }
 }
+
+def architecture_component = '1.0.0-rc1'
 def dagger = '2.12'
-def support_lib = '26.0.2'
+def support_lib = '26.1.0'
 def glide = '4.2.0'
 def retrofit = '2.3.0'
 def okhttp3 = '3.9.0'
@@ -37,6 +42,14 @@ dependencies {
 
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Architecture Component
+    compile 'android.arch.lifecycle:runtime:1.0.3'
+    kapt "android.arch.lifecycle:compiler:$architecture_component"
+    compile "android.arch.lifecycle:common-java8:$architecture_component"
+    compile "android.arch.lifecycle:extensions:$architecture_component"
+    compile "android.arch.lifecycle:reactivestreams:$architecture_component"
+    compile 'android.arch.paging:runtime:1.0.0-alpha3'
 
     // Rx
     compile 'io.reactivex.rxjava2:rxjava:2.1.5'
@@ -73,7 +86,7 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp3"
 
     // Timber
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.jakewharton.timber:timber:4.6.0'
 
     // test
     compile fileTree(dir: 'libs', include: ['*.jar'])

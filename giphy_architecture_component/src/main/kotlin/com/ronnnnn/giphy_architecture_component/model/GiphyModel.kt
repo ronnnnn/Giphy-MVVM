@@ -19,7 +19,7 @@ import javax.inject.Singleton
 class GiphyModel @Inject constructor(private val context: Context, private val giphyApi: GiphyApi) {
 
     @CheckResult
-    fun getTrending(offset: Int = 0, limit: Int = 25, rating: String = "", format: String = ""): Single<Trending> =
+    fun getTrending(offset: Int, limit: Int, rating: String, format: String): Single<Trending> =
             giphyApi.getTrending(context.getString(R.string.giphy_api_key), limit, offset, rating, format)
                     .map { trendingJson -> trendingJson.toEntity() }
                     .subscribeOn(Schedulers.io())
