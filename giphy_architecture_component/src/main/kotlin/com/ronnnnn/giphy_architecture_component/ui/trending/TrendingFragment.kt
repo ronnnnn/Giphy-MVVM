@@ -14,6 +14,7 @@ import android.widget.ImageView
 import com.ronnnnn.giphy_architecture_component.App
 import com.ronnnnn.giphy_architecture_component.R
 import com.ronnnnn.giphy_architecture_component.databinding.FragmentTrendingBinding
+import com.ronnnnn.giphy_architecture_component.ui.detail.DetailFragment
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import javax.inject.Inject
 
@@ -64,6 +65,10 @@ class TrendingFragment : Fragment(), TrendingRecyclerAdapter.Listener {
     }
 
     override fun onItemClicked(gifId: String, sharedImageView: ImageView) {
-
+        activity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container_frame_layout, DetailFragment.createInstance(gifId))
+                .addToBackStack(DetailFragment::class.java.name)
+                .commit()
     }
 }

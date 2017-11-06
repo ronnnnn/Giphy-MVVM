@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.ronnnnn.giphy_architecture_component.App
+import com.ronnnnn.giphy_architecture_component.domain.detail.GetGifByIdUseCase
 import com.ronnnnn.giphy_architecture_component.domain.trending.GetTrendingGifsUseCase
 import com.ronnnnn.giphy_architecture_component.model.GiphyModel
+import com.ronnnnn.giphy_architecture_component.ui.detail.DetailViewModelFactory
 import com.ronnnnn.giphy_architecture_component.ui.trending.TrendingViewModelFactory
 import dagger.Component
 import okhttp3.OkHttpClient
@@ -35,5 +37,9 @@ interface AppComponent {
 
     fun getTrendingGifUseCase(): GetTrendingGifsUseCase
 
+    fun getGifByIdUseCase(): GetGifByIdUseCase
+
     fun trendingViewModelFactory(): TrendingViewModelFactory
+
+    fun detailViewModelFactory(): DetailViewModelFactory
 }
