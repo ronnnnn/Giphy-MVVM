@@ -1,32 +1,23 @@
 package com.ronnnnn.giphy_architecture_component.ui.detail
 
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.view.View
 import com.ronnnnn.giphy_architecture_component.domain.detail.GetGifByIdUseCase
+import com.ronnnnn.giphy_architecture_component.ui.BaseViewModel
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 /**
  * Created by kokushiseiya on 2017/11/06.
  */
-class DetailViewModel(private val getGifByIdUseCase: GetGifByIdUseCase) : ViewModel() {
-
-    private val disposable: CompositeDisposable = CompositeDisposable()
+class DetailViewModel(private val getGifByIdUseCase: GetGifByIdUseCase) : BaseViewModel() {
 
     val gifImageUrl: ObservableField<String> = ObservableField()
     val userImageUrl: ObservableField<String> = ObservableField()
     val userName: ObservableField<String> = ObservableField()
     val userTwitterId: ObservableField<String> = ObservableField()
     val twitterIdVisibility: ObservableField<Int> = ObservableField()
-
-    override fun onCleared() {
-        super.onCleared()
-
-        disposable.clear()
-    }
 
     fun fetchGif(gifId: String) {
         getGifByIdUseCase.execute(gifId)
