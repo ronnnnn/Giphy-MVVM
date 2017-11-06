@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.ronnnnn.giphy_architecture_component.R
+import com.ronnnnn.giphy_architecture_component.databinding.ItemTrendingRecyclerView1Binding
+import com.ronnnnn.giphy_architecture_component.databinding.ItemTrendingRecyclerView2Binding
+import com.ronnnnn.giphy_architecture_component.databinding.ItemTrendingRecyclerView3Binding
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 
 /**
@@ -133,7 +136,7 @@ class TrendingRecyclerAdapter(
         }
     }
 
-    inner class FirstGridViewHolder(private val binding: ItemTrendingRecyclerView1Binding) : BaseViewHolder(binding) {
+    inner class FirstGridViewHolder(binding: ItemTrendingRecyclerView1Binding) : BaseViewHolder(binding) {
 
         val gifIds: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
         val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
@@ -150,7 +153,7 @@ class TrendingRecyclerAdapter(
         }
     }
 
-    inner class SecondGridViewHolder(private val binding: ItemTrendingRecyclerView2Binding) : BaseViewHolder(binding) {
+    inner class SecondGridViewHolder(binding: ItemTrendingRecyclerView2Binding) : BaseViewHolder(binding) {
         val gifIds: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
         val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
 
@@ -166,7 +169,7 @@ class TrendingRecyclerAdapter(
         }
     }
 
-    inner class ThirdGridViewHolder(private val binding: ItemTrendingRecyclerView3Binding) : BaseViewHolder(binding) {
+    inner class ThirdGridViewHolder(binding: ItemTrendingRecyclerView3Binding) : BaseViewHolder(binding) {
 
         val gifIds: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
         val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())

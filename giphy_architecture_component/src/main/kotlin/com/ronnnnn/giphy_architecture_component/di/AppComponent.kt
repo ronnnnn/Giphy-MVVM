@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.ronnnnn.giphy_architecture_component.App
 import com.ronnnnn.giphy_architecture_component.domain.trending.GetTrendingGifsUseCase
 import com.ronnnnn.giphy_architecture_component.model.GiphyModel
+import com.ronnnnn.giphy_architecture_component.ui.trending.TrendingViewModelFactory
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -33,4 +34,6 @@ interface AppComponent {
     fun giphyModel(): GiphyModel
 
     fun getTrendingGifUseCase(): GetTrendingGifsUseCase
+
+    fun trendingViewModelFactory(): TrendingViewModelFactory
 }

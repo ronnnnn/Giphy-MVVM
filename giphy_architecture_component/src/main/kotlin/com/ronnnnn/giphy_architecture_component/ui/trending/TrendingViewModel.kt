@@ -7,15 +7,11 @@ import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * Created by kokushiseiya on 2017/11/05.
  */
-class TrendingViewModel : ViewModel() {
-
-    @Inject
-    lateinit var getTrendingGifsUseCase: GetTrendingGifsUseCase
+class TrendingViewModel(getTrendingGifsUseCase: GetTrendingGifsUseCase) : ViewModel() {
 
     val gifs: MutableLiveData<List<Gif>> = MutableLiveData()
 

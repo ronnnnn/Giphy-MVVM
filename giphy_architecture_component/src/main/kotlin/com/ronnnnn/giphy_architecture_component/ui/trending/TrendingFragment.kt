@@ -11,9 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.ronnnnn.giphy_architecture_component.App
 import com.ronnnnn.giphy_architecture_component.R
 import com.ronnnnn.giphy_architecture_component.databinding.FragmentTrendingBinding
 import com.ronnnnn.giphy_mvvm.data.json.response.gif.Gif
+import javax.inject.Inject
 
 /**
  * Created by kokushiseiya on 2017/11/03.
@@ -25,31 +27,43 @@ class TrendingFragment : Fragment(), TrendingRecyclerAdapter.Listener {
         fun createInstance(): Fragment = TrendingFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            DataBindingUtil.inflate<FragmentTrendingBinding>(inflater, R.layout.fragment_trending, container, false).run {
-                val trendingViewModel = ViewModelProviders.of(this@TrendingFragment)
-                        .get(TrendingViewModel::class.java)
-                viewModel = trendingViewModel
+    @Inject
+    lateinit var trendingViewModelFactory: TrendingViewModelFactory
 
-                trendingRecyclerView.run {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = TrendingRecyclerAdapter(context, this@TrendingFragment)
-                }
+    private val component: Component by lazy {
+        DaggerComponent.builder()
+                .appComponent(App.get(context).component)
+                .build()
+    }
 
-                observeTrendingGifs(trendingViewModel, trendingRecyclerView)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        component.inject(this)
 
-                root
+        DataBindingUtil.inflate<FragmentTrendingBinding>(inflater, R.layout.fragment_trending, container, false).run {
+            val trendingViewModel = ViewModelProviders.of(this@TrendingFragment, trendingViewModelFactory)
+                    .get(TrendingViewModel::class.java)
+            viewModel = trendingViewModel
+
+            trendingRecyclerView.run {
+                layoutManager = LinearLayoutManager(context)
+                adapter = TrendingRecyclerAdapter(context, this@TrendingFragment)
             }
+
+            observeTrendingGifs(trendingViewModel, trendingRecyclerView)
+
+            return root
+        }
+    }
 
     private fun observeTrendingGifs(viewModel: TrendingViewModel, trendingRecyclerView: RecyclerView) {
         viewModel.gifs
                 .observe(this,
                         Observer<List<Gif>> { gifs ->
-                            (trendingRecyclerView.adapter as TrendingRecyclerAdapter).setItemsAndNotify(gifs)
+                            gifs?.let { (trendingRecyclerView.adapter as TrendingRecyclerAdapter).setItemsAndNotify(it) }
                         })
     }
 
     override fun onItemClicked(gifId: String, sharedImageView: ImageView) {
-        
+
     }
 }
