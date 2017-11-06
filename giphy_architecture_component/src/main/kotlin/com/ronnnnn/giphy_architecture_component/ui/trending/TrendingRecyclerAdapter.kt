@@ -117,7 +117,6 @@ class TrendingRecyclerAdapter(
     }
 
     fun setItemsAndNotify(items: List<Gif>) {
-        gifs.clear()
         gifs.addAll(items)
         notifyDataSetChanged()
     }
