@@ -19,13 +19,9 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_main, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<ViewPager>(R.id.container_view_pager).run {
-            adapter = MainFragementPagerAdapter(fragmentManager)
-        }
-    }
+            inflater.inflate(R.layout.fragment_main, container, false).apply {
+                findViewById<ViewPager>(R.id.container_view_pager).run {
+                    adapter = MainFragmentPagerAdapter(childFragmentManager)
+                }
+            }
 }

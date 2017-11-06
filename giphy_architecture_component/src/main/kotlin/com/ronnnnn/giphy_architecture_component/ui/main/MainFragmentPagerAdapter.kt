@@ -8,7 +8,7 @@ import com.ronnnnn.giphy_architecture_component.ui.trending.TrendingFragment
 /**
  * Created by kokushiseiya on 2017/11/03.
  */
-class MainFragementPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class MainFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
     val fragments = arrayOf(TrendingFragment.createInstance())
 
