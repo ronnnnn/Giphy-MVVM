@@ -80,7 +80,7 @@ class TrendingFragment : Fragment(), TrendingRecyclerAdapter.Listener {
         viewModel.gifs
                 .observe(this,
                         Observer<List<Gif>> { gifs ->
-                            gifs?.let { (trendingRecyclerView.adapter as TrendingRecyclerAdapter).setItemsAndNotify(it) }
+                            gifs?.let { (trendingRecyclerView.adapter as TrendingRecyclerAdapter).addItemsAndNotify(it) }
                         })
     }
 

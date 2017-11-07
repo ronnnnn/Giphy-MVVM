@@ -43,12 +43,11 @@ class DetailFragment : Fragment() {
         val gifId = arguments.getString(KEY_GIF_ID)
 
         DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).run {
-            val detailViewModel = ViewModelProviders.of(this@DetailFragment, detailViewModelFactory)
+            viewModel = ViewModelProviders.of(this@DetailFragment, detailViewModelFactory)
                     .get(DetailViewModel::class.java)
                     .apply {
                         fetchGif(gifId)
                     }
-            viewModel = detailViewModel
 
             return root
         }

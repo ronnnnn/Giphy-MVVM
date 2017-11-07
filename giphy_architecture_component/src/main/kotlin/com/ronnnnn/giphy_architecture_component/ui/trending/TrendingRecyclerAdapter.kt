@@ -97,28 +97,23 @@ class TrendingRecyclerAdapter(
                 val startIndex = viewPosition * 12
                 val endIndex = startIndex + MIN_ITEM_COUNT - 1
                 val list = (startIndex..endIndex).map { index -> gifs[index] }
-                holder.loadItem(list, position)
+                holder.loadItem(list)
             }
 
             ITEM_VIEW_TYPE_2 -> {
                 val startIndex = viewPosition * 12 + MIN_ITEM_COUNT
                 val endIndex = startIndex + MAX_ITEM_COUNT - 1
                 val list = (startIndex..endIndex).map { index -> gifs[index] }
-                holder.loadItem(list, position)
+                holder.loadItem(list)
             }
 
             ITEM_VIEW_TYPE_3 -> {
                 val startIndex = viewPosition * 12 + MIN_ITEM_COUNT + MAX_ITEM_COUNT
                 val endIndex = startIndex + MIN_ITEM_COUNT - 1
                 val list = (startIndex..endIndex).map { index -> gifs[index] }
-                holder.loadItem(list, position)
+                holder.loadItem(list)
             }
         }
-    }
-
-    fun setItemsAndNotify(items: List<Gif>) {
-        gifs.addAll(items)
-        notifyDataSetChanged()
     }
 
     fun addItemsAndNotify(items: List<Gif>) {
@@ -128,19 +123,10 @@ class TrendingRecyclerAdapter(
 
     inner abstract class BaseViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        abstract fun loadItem(gifs: List<Gif?>, position: Int)
+        abstract val gifIds: List<ObservableField<String>>
+        abstract val imageUrls: List<ObservableField<String>>
 
-        fun startDetail(gifId: String, viewId: Int) {
-            listener.onItemClicked(gifId, binding.root.findViewById(viewId))
-        }
-    }
-
-    inner class FirstGridViewHolder(binding: ItemTrendingRecyclerView1Binding) : BaseViewHolder(binding) {
-
-        val gifIds: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
-        val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
-
-        override fun loadItem(gifs: List<Gif?>, position: Int) {
+        fun loadItem(gifs: List<Gif?>) {
             gifs.map { gif -> gif?.id }
                     .forEachIndexed { index, id ->
                         gifIds[index].set(id)
@@ -150,39 +136,25 @@ class TrendingRecyclerAdapter(
                         imageUrls[index].set(url)
                     }
         }
+
+        fun startDetail(gifId: String, viewId: Int) {
+            listener.onItemClicked(gifId, binding.root.findViewById(viewId))
+        }
+    }
+
+    inner class FirstGridViewHolder(binding: ItemTrendingRecyclerView1Binding) : BaseViewHolder(binding) {
+        override val gifIds: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField())
+        override val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField())
     }
 
     inner class SecondGridViewHolder(binding: ItemTrendingRecyclerView2Binding) : BaseViewHolder(binding) {
-        val gifIds: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
-        val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
-
-        override fun loadItem(gifs: List<Gif?>, position: Int) {
-            gifs.map { gif -> gif?.id }
-                    .forEachIndexed { index, id ->
-                        gifIds[index].set(id)
-                    }
-            gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
-                    .forEachIndexed { index, Url ->
-                        imageUrls[index].set(Url)
-                    }
-        }
+        override val gifIds: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
+        override val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField(), ObservableField())
     }
 
     inner class ThirdGridViewHolder(binding: ItemTrendingRecyclerView3Binding) : BaseViewHolder(binding) {
-
-        val gifIds: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
-        val imageUrls: List<ObservableField<String?>> = listOf(ObservableField(), ObservableField(), ObservableField())
-
-        override fun loadItem(gifs: List<Gif?>, position: Int) {
-            gifs.map { gif -> gif?.id }
-                    .forEachIndexed { index, id ->
-                        gifIds[index].set(id)
-                    }
-            gifs.map { gif -> gif?.images?.fixedHeightDownsampled?.url }
-                    .forEachIndexed { index, Url ->
-                        imageUrls[index].set(Url)
-                    }
-        }
+        override val gifIds: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField())
+        override val imageUrls: List<ObservableField<String>> = listOf(ObservableField(), ObservableField(), ObservableField())
     }
 
     interface Listener {
